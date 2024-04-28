@@ -1,38 +1,10 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react'
-
-function truncateString(str: string, limit: number) {
-    if (str.length > limit) {
-        return str.substring(0, limit) + '...';
-    } else {
-        return str;
-    }
-}
+import useFetchArticles from '../hooks/useFetchArticles';
+import truncateString from '../utils/truncateString';
 
 const NewsFeed = () => {
-  const [articles, setArticles] = useState<any[]>([])
-
-  const fetchArticles = async () => {
-    const options = {
-      method: 'GET',
-      url: 'https://crypto-news16.p.rapidapi.com/news/top/5',
-      headers: {
-        'X-RapidAPI-Key': "7b14ed585amsh7dd662e5f11bcb2p11e4bfjsnc08e05e6fda9",
-        'X-RapidAPI-Host': 'crypto-news16.p.rapidapi.com'
-      }
-    };
-
-    try {
-      const response = await axios.request(options);
-      setArticles(response.data)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  
-  useEffect(() => {
-    fetchArticles()
-  }, [])
+  const articles = useFetchArticles()
   
   return (
     <div className="w-1/3">
