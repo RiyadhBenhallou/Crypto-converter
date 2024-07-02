@@ -26,7 +26,7 @@ const CurrencyConverter = () => {
             <tr className="flex items-center space-x-3">
               <td className="text-sm font-medium">Primary Currency</td>
               <td>
-                <input type="number" className='border border-blue-800 p-1 rounded-lg' name="currency-1" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                <input type="number" className='border border-blue-800 p-1 rounded-lg' name="currency-1" value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
               </td>
               <td>
                 <select value={chosenPrimaryCurrency} onChange={(e) => setChosenPrimaryCurrency(e.target.value)} className="focus:outline-none">
